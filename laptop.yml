@@ -3,4 +3,14 @@
 
   roles:
     - packages
-    
+
+# todo:
+# - Kubernetes:
+#    - tekton
+#    - k9s
+# - zsh config
+# - ssh config
+# - vscode
+# - vim
+# - dotfiles
+# - vagrant
