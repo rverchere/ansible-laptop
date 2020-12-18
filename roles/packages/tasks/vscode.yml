@@ -1,4 +1,23 @@
 ---
+- name: Install vscode
+  block:
+    - name: Get Microsoft apt key
+      become: yes
+      apt_key:
+        url: https://packages.microsoft.com/keys/microsoft.asc
+
+    - name: Add vscode apt repository
+      become: yes
+      apt_repository:
+        repo: "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+        filename: vscode
+
+    - name: Install vscode 
+      become: yes
+      apt:
+        name: code
+        state: latest
+
 # vscode extentions
 # TODO: changed when not installed!
 - name: Install vscode extensions
