@@ -87,3 +87,8 @@
     extra_opts:
       - k9s
     remote_src: yes
+
+- name: Install octant
+  become: yes
+  apt:
+   deb: "https://github.com/vmware-tanzu/octant/releases/download/v{{ octant_version }}/octant_{{ octant_version }}_Linux-64bit.deb"

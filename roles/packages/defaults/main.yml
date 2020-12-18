@@ -15,7 +15,8 @@ kubectl_packages_dependencies:
   - apt-transport-https
   - curl
   - gnupg2
-  
+
 velero_version: "1.5.2"
 tekton_version: "0.15.0"
 k9s_version: "0.24.2"
+octant_version: "0.16.3"
