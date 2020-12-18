@@ -1,0 +1,16 @@
+---
+# tasks file for packages
+
+- name: "Upgrade all packages to the latest version"
+  become: yes
+  apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+
+- name: "Install {{ packages }}"
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    autoclean: yes

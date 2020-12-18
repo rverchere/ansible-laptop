@@ -1,0 +1,12 @@
+---
+# defaults file for packages
+packages:
+  - ccze
+  - git
+  - htop
+  - ncdu
+  - rsync
+  - screen
+  - tcpdump
+  - vim
+  - zsh
