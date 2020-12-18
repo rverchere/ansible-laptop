@@ -7,7 +7,7 @@
     - name: Install kubectl dependencies
       become: yes
       apt:
-        name: "{{ packages_kubectl_dependencies }}"
+        name: "{{ kubectl_packages_dependencies }}"
         state: latest
 
     - name: Get google apt key
@@ -73,4 +73,17 @@
     group: root
     extra_opts:
       - tkn
+    remote_src: yes
+
+# TODO: check local version
+- name: Install latest k9s version
+  become: yes
+  unarchive:
+    src: "https://github.com/derailed/k9s/releases/download/v{{ k9s_version }}/k9s_Linux_x86_64.tar.gz"
+    dest: /usr/local/bin
+    mode: 0755
+    owner: root
+    group: root
+    extra_opts:
+      - k9s
     remote_src: yes

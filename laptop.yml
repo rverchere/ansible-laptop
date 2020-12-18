@@ -4,10 +4,7 @@
   roles:
     - packages
 
-# todo:
-# - Kubernetes:
-#    - tekton
-#    - k9s
+# TODO:
 # - zsh config
 # - ssh config
 # - vscode
