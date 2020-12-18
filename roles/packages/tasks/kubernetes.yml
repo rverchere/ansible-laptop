@@ -1,0 +1,64 @@
+---
+# tasks file for kubernetes specific packages
+
+# Kubectl install - https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-using-native-package-management
+- name: Install kubectl
+  block:
+    - name: Install kubectl dependencies
+      become: yes
+      apt:
+        name: "{{ packages_kubectl_dependencies }}"
+        state: latest
+
+    - name: Get google apt key
+      become: yes
+      apt_key:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+    - name: Add kubernetes apt repository
+      become: yes
+      apt_repository:
+        repo: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+        filename: kubernetes
+
+    - name: Install kubectl 
+      become: yes
+      apt:
+        name: kubectl
+        state: latest
+
+# Helm package installation - https://helm.sh/docs/intro/install/#from-apt-debianubuntu
+- name: Install Helm
+  block:
+    - name: Get baltocdn apt key
+      become: yes
+      apt_key:
+        url: https://baltocdn.com/helm/signing.asc
+
+    - name: Add helm apt repository
+      become: yes
+      apt_repository:
+        repo: "deb https://baltocdn.com/helm/stable/debian/ all main"
+        filename: helm
+
+    - name: Install helm 
+      become: yes
+      apt:
+        name: helm
+        state: latest
+
+- name: Install Velero
+  block:
+    - name: download latest velero version
+      become: yes
+      unarchive:
+        src: "https://github.com/vmware-tanzu/velero/releases/download/{{ velero_version }}/velero-{{ velero_version }}-linux-amd64.tar.gz"
+        dest: /usr/local/bin
+        mode: 0755
+        owner: root
+        group: root
+        extra_opts:
+          - --strip=1
+          - --wildcards
+          - '*/velero'
+        remote_src: yes

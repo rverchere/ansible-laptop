@@ -1,16 +1,39 @@
 ---
 # tasks file for packages
 
-- name: "Upgrade all packages to the latest version"
+- name: Upgrade all packages to the latest version
   become: yes
   apt:
     name: "*"
     state: latest
     update_cache: yes
 
-- name: "Install {{ packages }}"
+# Debian standard packages
+- name: Install {{ packages }}
   become: yes
   apt:
     name: "{{ packages }}"
     state: latest
-    autoclean: yes
+
+# Terraform package installation - https://www.terraform.io/docs/cli/install/apt.html
+- name: Install Terraform
+  block:
+    - name: Get terraform apt key
+      become: yes
+      apt_key:
+        url: https://apt.releases.hashicorp.com/gpg
+
+    - name: Add terraform apt repository
+      become: yes
+      apt_repository:
+        repo: "deb [arch=amd64] https://apt.releases.hashicorp.com focal main"
+        filename: terraform
+
+    - name: Install terraform 
+      become: yes
+      apt:
+        name: terraform
+        state: latest
+
+# Kubernetes packages
+- include: kubernetes.yml

@@ -10,3 +10,10 @@ packages:
   - tcpdump
   - vim
   - zsh
+
+packages_kubectl_dependencies:
+  - apt-transport-https
+  - curl
+  - gnupg2
+
+velero_version: v1.5.2
