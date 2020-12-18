@@ -16,4 +16,5 @@ packages_kubectl_dependencies:
   - curl
   - gnupg2
 
-velero_version: v1.5.2
+velero_version: "1.5.2"
+tekton_version: "0.15.0"

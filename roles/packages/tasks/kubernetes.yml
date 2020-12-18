@@ -47,18 +47,30 @@
         name: helm
         state: latest
 
-- name: Install Velero
-  block:
-    - name: download latest velero version
-      become: yes
-      unarchive:
-        src: "https://github.com/vmware-tanzu/velero/releases/download/{{ velero_version }}/velero-{{ velero_version }}-linux-amd64.tar.gz"
-        dest: /usr/local/bin
-        mode: 0755
-        owner: root
-        group: root
-        extra_opts:
-          - --strip=1
-          - --wildcards
-          - '*/velero'
-        remote_src: yes
+# TODO: check local version
+- name: Install latest velero version
+  become: yes
+  unarchive:
+    src: "https://github.com/vmware-tanzu/velero/releases/download/v{{ velero_version }}/velero-v{{ velero_version }}-linux-amd64.tar.gz"
+    dest: /usr/local/bin
+    mode: 0755
+    owner: root
+    group: root
+    extra_opts:
+      - --strip=1
+      - --wildcards
+      - '*/velero'
+    remote_src: yes
+
+# TODO: check local version
+- name: Install latest tekton version
+  become: yes
+  unarchive:
+    src: "https://github.com/tektoncd/cli/releases/download/v{{ tekton_version }}/tkn_{{ tekton_version }}_Linux_x86_64.tar.gz"
+    dest: /usr/local/bin
+    mode: 0755
+    owner: root
+    group: root
+    extra_opts:
+      - tkn
+    remote_src: yes
