@@ -1,0 +1,7 @@
+---
+# vscode extentions
+# TODO: changed when not installed!
+- name: Install vscode extensions
+  shell:
+    cmd: "code --install-extension {{ item }}"
+  loop: "{{ code_extensions }}" 

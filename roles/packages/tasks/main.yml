@@ -37,3 +37,7 @@
 
 # Kubernetes packages
 - include: kubernetes.yml
+
+
+# VS Code
+- include: vscode.yml
