@@ -9,11 +9,18 @@
     update_cache: yes
 
 # Debian standard packages
-- name: Install {{ packages }}
+- name: Install {{ apt_packages }}
   become: yes
   apt:
-    name: "{{ packages }}"
+    name: "{{ apt_packages }}"
     state: latest
+
+# Python packages
+- name: Install {{ pip_packages }}
+  pip:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ pip_packages }}"
 
 # Terraform package installation - https://www.terraform.io/docs/cli/install/apt.html
 - name: Install Terraform

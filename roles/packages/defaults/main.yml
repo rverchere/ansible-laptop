@@ -1,15 +1,23 @@
 ---
 # defaults file for packages
-packages:
+apt_packages:
   - ccze
   - git
   - htop
+  - jq
   - ncdu
+  - python3-pip
   - rsync
   - screen
   - tcpdump
   - vim
   - zsh
+
+# Python pip packages
+pip_packages:
+  - ansible-lint
+  - ara[server]
+  - bpytop
 
 # Kubernetes
 kubectl_packages_dependencies:
