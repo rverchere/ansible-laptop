@@ -8,6 +8,13 @@
     state: latest
     update_cache: yes
 
+# Snap repository - https://linuxmint-user-guide.readthedocs.io/en/latest/snap.html
+- name: Allow snap installation
+  become: yes
+  file:
+    path: /etc/apt/preferences.d/nosnap.pref
+    state: absent
+
 # Debian standard packages
 - name: Install {{ apt_packages }}
   become: yes
@@ -23,7 +30,7 @@
   loop: "{{ pip_packages }}"
 
 # Terraform package installation - https://www.terraform.io/docs/cli/install/apt.html
-- name: Install Terraform
+- name: Install terraform
   block:
     - name: Get terraform apt key
       become: yes
@@ -42,9 +49,14 @@
         name: terraform
         state: latest
 
+# Vagrant
+- name: Install vagrant
+  become: yes
+  apt:
+    deb: "https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_x86_64.deb"
+
 # Kubernetes packages
 - include: kubernetes.yml
-
 
 # VS Code
 - include: vscode.yml

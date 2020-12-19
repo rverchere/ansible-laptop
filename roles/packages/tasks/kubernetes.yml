@@ -1,6 +1,13 @@
 ---
 # tasks file for kubernetes specific packages
 
+# Microk8s
+- name: Install microk8s
+  become: yes
+  snap:
+    name: microk8s
+    classic: yes
+
 # Kubectl install - https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-using-native-package-management
 - name: Install kubectl
   block:

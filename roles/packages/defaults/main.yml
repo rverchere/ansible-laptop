@@ -9,6 +9,7 @@ apt_packages:
   - python3-pip
   - rsync
   - screen
+  - snapd
   - tcpdump
   - vim
   - zsh
@@ -19,6 +20,9 @@ pip_packages:
   - ara[server]
   - bpytop
   - pip
+
+# Vagrant
+vagrant_version: "2.2.14"
 
 # Kubernetes
 kubectl_packages_dependencies:
