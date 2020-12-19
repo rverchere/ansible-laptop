@@ -25,6 +25,7 @@ pip_packages:
 vagrant_version: "2.2.14"
 
 # Kubernetes
+microk8s_version: "1.20/stable"
 kubectl_packages_dependencies:
   - apt-transport-https
   - curl

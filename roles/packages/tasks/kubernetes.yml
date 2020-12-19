@@ -7,6 +7,17 @@
   snap:
     name: microk8s
     classic: yes
+    channel: "{{ microk8s_version }}"
+# TODO:
+# usermod -a -G microk8s remi
+# chown -f -R remi ~/.kube
+
+# Lens
+- name: Install lens
+  become: yes
+  snap:
+    name: kontena-lens
+    classic: yes
 
 # Kubectl install - https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-using-native-package-management
 - name: Install kubectl
@@ -31,7 +42,9 @@
     - name: Install kubectl 
       become: yes
       apt:
-        name: kubectl
+        name:
+         - kubectl
+         - kubeadm
         state: latest
 
 # Helm package installation - https://helm.sh/docs/intro/install/#from-apt-debianubuntu
