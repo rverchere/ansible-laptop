@@ -18,6 +18,7 @@ pip_packages:
   - ansible-lint
   - ara[server]
   - bpytop
+  - pip
 
 # Kubernetes
 kubectl_packages_dependencies:
