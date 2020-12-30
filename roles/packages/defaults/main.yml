@@ -12,6 +12,7 @@ apt_packages:
   - snapd
   - tcpdump
   - vim
+  - virtualbox
   - zsh
 
 # Python pip packages
@@ -21,8 +22,11 @@ pip_packages:
   - bpytop
   - pip
 
-# Vagrant
-vagrant_version: "2.2.14"
+# Hashicorp packages
+hashicorp_packages:
+  - terraform
+  - vagrant
+  - vault
 
 # Kubernetes
 microk8s_version: "1.20/stable"

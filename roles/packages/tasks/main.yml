@@ -30,30 +30,24 @@
   loop: "{{ pip_packages }}"
 
 # Terraform package installation - https://www.terraform.io/docs/cli/install/apt.html
-- name: Install terraform
+- name: Install Hashicorp packages
   block:
-    - name: Get terraform apt key
+    - name: Get Hashicorp apt key
       become: yes
       apt_key:
         url: https://apt.releases.hashicorp.com/gpg
 
-    - name: Add terraform apt repository
+    - name: Add Hashicorp apt repository
       become: yes
       apt_repository:
         repo: "deb [arch=amd64] https://apt.releases.hashicorp.com focal main"
-        filename: terraform
+        filename: hashicorp
 
-    - name: Install terraform 
+    - name: Install {{ hashicorp_packages }}
       become: yes
       apt:
-        name: terraform
+        name: "{{ hashicorp_packages }}"
         state: latest
-
-# Vagrant
-- name: Install vagrant
-  become: yes
-  apt:
-    deb: "https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_x86_64.deb"
 
 # Kubernetes packages
 - include: kubernetes.yml
