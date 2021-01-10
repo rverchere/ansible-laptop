@@ -112,3 +112,18 @@
   become: yes
   apt:
    deb: "https://github.com/vmware-tanzu/octant/releases/download/v{{ octant_version }}/octant_{{ octant_version }}_Linux-64bit.deb"
+
+- name: Install kubectx and kubens
+  become: yes
+  unarchive:
+    src: "https://github.com/ahmetb/kubectx/releases/download/v{{ kubectx_version }}/{{ item }}_v{{ kubectx_version }}_linux_x86_64.tar.gz"
+    dest: /usr/local/bin
+    mode: 0755
+    owner: root
+    group: root
+    extra_opts:
+      - "{{ item }}"
+    remote_src: yes
+  loop:
+    - "kubectx"
+    - "kubens"

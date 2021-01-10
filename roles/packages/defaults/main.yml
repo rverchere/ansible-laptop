@@ -38,6 +38,8 @@ velero_version: "1.5.2"
 tekton_version: "0.15.0"
 k9s_version: "0.24.2"
 octant_version: "0.16.3"
+kubens_version: "0.9.1"
+kubectx_version: "0.9.1"
 
 # VS Code
 code_extensions:
